@@ -1,0 +1,29 @@
+import React, {useId} from 'react'
+
+function Select({//it is a select component
+    options,
+    label,
+    className,
+    ...props
+}, ref) {
+    const id = useId()
+  return (
+    <div className='w-full'>
+        {label && <label htmlFor={id} className=''></label>}
+        <select
+        {...props}
+        id={id}
+        ref={ref}
+        className={`px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 duration-200 border border-gray-200 w-full ${className}`}
+        >
+            {options?.map((option) => (//option ? means if options available then only use maop otherwise it will throw an error and it will crash 
+                <option key={option} value={option}>
+                    {option}
+                </option>
+            ))}
+        </select>
+    </div>
+  )
+}
+
+export default React.forwardRef(Select)//this is another easier way of using forward ref
